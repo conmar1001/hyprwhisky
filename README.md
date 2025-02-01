@@ -1,0 +1,2 @@
+# hyprwhisky
+My hyprland config
