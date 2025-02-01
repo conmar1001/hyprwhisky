@@ -1,0 +1,17 @@
+configuration {
+    show-icons: true;
+    font: "Hurmit Nerd Font 12";
+    icon-theme: "Papirus-Icon-Theme";
+
+    display-ssh:    "󰣀 ssh:";
+    display-run:    "󱓞 run:";
+    display-drun:   "󰣖 drun:";
+    display-window: "󱂬 window:";
+    display-combi:  "󰕘 combi:";
+    display-filebrowser: "󰉋 filebrowser:";
+
+    dpi: 110;
+}
+
+
+@theme "~/.config/rofi/whisky.rasi"
