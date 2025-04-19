@@ -1,96 +1,110 @@
+@import "mocha.css";
+
 * {
-    border: none;
-    border-radius: 10;
-    min-height: 0;
-    font-family: "hurmit nerd font";
-    font-weight: 600;
-    font-size: 14px;
-    padding: 0;
+  font-family: Hurmit Nerd Font;
+  font-size: 17px;
+  min-height: 0;
+}
+#window {
+  border-radius: 1rem;
+  margin: 5px;
+  background-color: @surface0;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+#waybar {
+  background: transparent;
+  color: @text;
+  margin: 5px 5px;
 }
 
-window#waybar {
-    background-color: #111111;
-    border: 1px solid 	#008080;
-}
-
-tooltip {
-    background-color: #111111;
-}
-
-#clock,
-#tray,
-#cpu,
-#memory,
-#battery,
-#network
-#pulseaudio {
-    margin: 6px 15px 6px 15px;
-    padding: 2px 4px;
-}
 #workspaces {
-    background-color: #303536;
-    background: transparent;
-    margin: 6px 0px 6px 6px;
+  border-radius: 1rem;
+  margin: 5px;
+  background-color: @surface0;
+  margin-left: 1rem;
 }
 
 #workspaces button {
-    all: initial;
-    min-width: 0;
-    box-shadow: inset 0 -3px transparent;
-    padding: 2px 4px;
-    color: 	#40e0d0;
+  color: @lavender;
+  border-radius: 1rem;
+  padding: 0.4rem;
 }
 
-#workspaces button.focused {
-    color: #ddc7a1;
+#workspaces button.active {
+  color: @sky;
+  border-radius: 1rem;
 }
 
-#workspaces button.urgent {
-    background-color: #ff0000;
+#workspaces button:hover {
+  color: @sapphire;
+  border-radius: 1rem;
+}
+
+#custom-music,
+#tray,
+#backlight,
+#clock,
+#battery,
+#pulseaudio,
+#custom-lock,
+#custom-power {
+  background-color: @surface0;
+  padding: 0.5rem 1rem;
+  margin: 5px 0;
 }
 
 #clock {
-    background: transparent;
-    color: #40e0d0;
-}
-
-#tray {
-  background: transparent;
-  color: #40e0d0;
+  color: @blue;
+  border-radius: 0px 1rem 1rem 0px;
+  margin-right: 1rem;
 }
 
 #battery {
-    background-color: #40e0d0;
-    background: transparent;
-    color: #40e0d0;
+  color: @green;
 }
 
-#cpu,
-#memory,
-#network,
+#battery.charging {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @red;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#backlight, #battery {
+    border-radius: 0;
+}
+
 #pulseaudio {
-    background-color: #40e0d0;
-    color: #40e0d0;
-    background: transparent;
-    
+  color: @maroon;
+  border-radius: 1rem 0px 0px 1rem;
+  margin-left: 1rem;
 }
 
-#cpu.critical,
-#memory.critical {
-    background-color: #40e0d0;
-    color: #ff0000;
+#custom-music {
+  color: @mauve;
+  border-radius: 1rem;
 }
 
-#battery.warning,
-#battery.critical,
-#battery.urgent {
-    background-color: #40e0d0;
-    color: #ff0000;
+#custom-lock {
+    border-radius: 1rem 0px 0px 1rem;
+    color: @lavender;
 }
 
-
-#window {
-  background: transparent;
-  color: #40e0d0;
+#custom-power {
+    margin-right: 1rem;
+    border-radius: 0px 1rem 1rem 0px;
+    color: @red;
 }
 
+#tray {
+  margin-right: 1rem;
+  border-radius: 1rem;
+}
