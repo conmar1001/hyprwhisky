@@ -22,6 +22,6 @@ kvantum
 nwg-look
 fish
 neovim
-fastfetc
+fastfetch
 //
 ```
