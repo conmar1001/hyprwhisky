@@ -9,7 +9,7 @@ Everything is located in the .config unless otherwise specified
 My neovim config is just nvchad with a somewhat matching theme. You can see nvchads install instructions @ https://nvchad.com/docs/quickstart/install
 
 List of my main packages
-...
+```
 //
 hyprland
 kitty
@@ -24,4 +24,4 @@ fish
 neovim
 fastfetc
 //
-...
+```
