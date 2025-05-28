@@ -18,7 +18,7 @@
                     "custom/sep","memory","custom/sep","custom/media"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["tray","custom/sep","custom/weather","custom/sep","pulseaudio","custom/sep","clock",
-                    "custom/sep","custom/spacer","custom/powermenu","custom/spacer"],
+                    "custom/sep","custom/spacer","custom/powermenu","custom/spacer","custom/swaync"],
     
     // Modules
     
