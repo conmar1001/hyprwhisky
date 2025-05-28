@@ -1,75 +1,149 @@
-{
-    "layer": "top", // Waybar at top layer
-    "position": "top", // Waybar position (top|bottom|left|right)
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "custom,music"],
-    "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "backlight", "battery", "clock", "tray", "custom/lock", "custom/power"],
+// Waybar Nord config by NelloKudo.
+// Made for Hyprland, might work on Sway after some messing, too.
+
+// -*- mode: jsonc -*-
+{   
+    // Position
+    "layer": "bottom",
+    "position": "bottom",
+    "height": 41,
+
+    // Margins
+    "margin-bottom": 10,
+    "margin-left": 15,
+    "margin-right": 15,
+
+    // Modules order
+    "modules-left": ["custom/spacer","custom/launcher","custom/spacer","custom/sep","cpu",
+                    "custom/sep","memory","custom/sep","custom/media"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["tray","custom/sep","custom/weather","custom/sep","pulseaudio","custom/sep","clock",
+                    "custom/sep","custom/spacer","custom/powermenu","custom/spacer"],
+    
+    // Modules
+    
+    // Pac-Man inspired workspaces from: https://github.com/gh0stzk/dotfiles
+    // Please change persistent-workspaces according to your config.
     "hyprland/workspaces": {
-         "disable-scroll": true,
-         "sort-by-name": true,
-         "format": " {icon} ",
-         "format-icons": {
-             "default": "",
-         },
-     },
-    "tray": {
-        "icon-size": 21,
-        "spacing": 10
-    },
-    "hyprland/window": {
-	"format": "{}",
-	"separate-outputs": true,
-    },
-    "custom/music": {
-        "format": "  {}",
-        "escape": true,
-        "interval": 5,
-        "tooltip": false,
-        "exec": "playerctl metadata --format='{{ title }}'",
-        "on-click": "playerctl play-pause",
-        "max-length": 50
-    },
-    "clock": {
-        "timezone": "America/Los_Angeles",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": " {:%d/%m/%Y}",
-        "format": " {:%H:%M}"
-    },
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
-    },
-    "battery": {
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰚥",
-        "format-alt": "{icon}",
-        "format-icons": ["󱊡", "󱊢",  "󱊣"]
-    },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{icon} {volume}%",
-        "format-muted": "",
+        "format": "{icon}",
+        "sort-by-number": true,
         "format-icons": {
-            "default": ["", "", " "]
+            "active": "󰮯",
+            "urgent": "󰑊",
+            "default": "󰊠",
+            "focused": "󰮯",
+            "empty": "󰑊"
         },
-        "on-click": "pavucontrol"
+        "persistent-workspaces": {
+            "*": [1, 2, 3, 4, 5]
+            // You can also set monitors like my setup:
+            // "DP-2": [1, 2, 3, 4, 5, 6],
+            // "HDMI-A-1": [7, 8, 9, 10, 11]
+        }
     },
-    "custom/lock": {
-        "tooltip": false,
-        "on-click": "sh -c '(sleep 0.5s; swaylock --grace 0)' & disown",
-        "format": "",
+
+    // Simple CPU module:
+    "cpu": {
+        "format": "<span color='#bf616a'>󰍛</span> {usage}%",
+        "interval": 2
     },
-    "custom/power": {
+
+    // Simple Memory module:
+    "memory": {
+        "interval": 3,
+        "format": "<span color='#b48ead'> </span> {used:0.1f}G"
+    },
+
+    // Simple Disk module:
+    "disk": {
+        "interval": 60,
+        "unit": "GB",
+        "path": "/home",
+        "format": "<span color='#ebcb8b'> </span> {free}"
+    },
+
+    // Minimal PulseAudio plugin:
+    // Needs: Wireplumber, Pavucontrol
+    "pulseaudio": {
+        "format": "<span color='#a3be8c'>{icon} </span>{volume}%",
+        "format-muted": "<span color='#f38ba8'>󰝟</span>",
         "tooltip": false,
-        "on-click": "wlogout &",
-        "format": "󰣇"
+        "on-click": "pavucontrol",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 10%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 10%-",
+        "format-icons": {
+        "headphone": "",
+        "headset": "",
+        "default": [
+            "",
+            "",
+            " "
+        ]
+        }
+    },
+
+    // Simple Clock module:
+    "clock": {
+        "format": "<span color='#89b4fa'>󰥔  </span>{:%H:%M | %a %d %b}"
+    },
+
+    // Simple Tray module:
+    "tray": {
+        "icon-size": 16,
+        "icon-theme": "Papirus",
+        "spacing": 2
+    },
+
+    // Just a simple spacer
+    "custom/spacer": {
+        "format": " "
+    },
+
+    // Just a clean sep
+    "custom/sep": {
+        "format": "◆"
+    },
+    
+    // Custom weather module
+    // Depends on weather.py from: https://gist.github.com/Surendrajat/ff3876fd2166dd86fb71180f4e9342d7#file-weather-py
+    // Already bundled in dotfiles.
+    // Please change the script to your own city!
+    "custom/weather": {
+        "format" : "{0}",
+        "max-length": 5,
+        "exec": "$HOME/.config/waybar/weather.py 2> /dev/null",
+        "restart-interval": 300,
+        "return-type": "json",
+        "on-click": "$HOME/.config/waybar/weather.py -o 2> /dev/null"
+    },
+
+    // Custom player module
+    // Depends on mediaplayer.py from Waybar's repo,
+    // bundled in dotfiles.
+    "custom/media": {
+        "format": "<span color='#a3be8c'> </span> {0}",
+        "escape": true,
+        "return-type": "json",
+        "max-length": 40,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl stop",
+        "smooth-scrolling-threshold": 10,
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+    },
+
+    // Custom launcher module
+    // Depends on rofi.
+    "custom/launcher": {
+        "format": "󰣇",
+        "on-click": "rofi -show drun"
+    },
+
+    // Custom powermenu module
+    // Depends on rofi and custom powermenu.
+    "custom/powermenu": {
+        "format": "",
+        "on-click": "$HOME/.config/rofi/powermenu.sh 2> /dev/null"
     }
 }
