@@ -1,1 +1,1 @@
-This is styled after catppuccin mocha
+This is styled after Nord
