@@ -20,13 +20,10 @@
 
 Welcome to Whisky's Hyprland configuration!
 
-This is a lightweight and clean Hyprland setup that builds on the default
-experience, with a few added features that give the environment a more
-comfortable work flow. The goal is to enhance usability without introducing
-unnecessary complexity, keeping the desktop both functional and visually
-appealing.
+This is a Nord based Hyprland config that I find somewhat visually appealing. 
+I am working on a rewrite using quickshell but i'm kinda dumb so it will be a while
 
-*All configuration files are located in the .config directory! (HIDDEN!)*
+*All configuration files are located in the .config directory.*
 
 ## Whisky's Picks
 
